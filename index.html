@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Asistente</title>
+  <style>
+    body { font-family: Arial; background: #f2f2f2; padding: 20px; }
+    #chat { max-width: 600px; margin: 0 auto; background: white; padding: 15px; border-radius: 10px; }
+    .message { margin: 10px 0; }
+    .user { font-weight: bold; color: #007bff; }
+    .bot { color: #000; }
+    input[type="text"] { width: 80%; padding: 10px; }
+    button { padding: 10px; }
+  </style>
+</head>
+<body>
+  <div id="chat">
+    <div id="chatlog"></div>
+    <input type="text" id="userInput" placeholder="Escribí tu pregunta..." />
+    <button onclick="responder()">Enviar</button>
+  </div>
+
+  <script>
+    const respuestas = {
+      "¿dónde queda la oficina?": "La oficina está en Av. Siempreviva 742.",
+      "¿cuáles son los horarios?": "Atendemos de lunes a viernes de 9 a 17 hs.",
+      "hola": "¡Hola! ¿En qué puedo ayudarte?",
+      "gracias": "¡De nada! 🙂"
+    };
+
+    function responder() {
+      const input = document.getElementById("userInput");
+      const pregunta = input.value.toLowerCase().trim();
+      const respuesta = respuestas[pregunta] || "No entiendo la pregunta. Probá con otra.";
+      
+      const chatlog = document.getElementById("chatlog");
+      chatlog.innerHTML += `<div class="message user">👤 ${pregunta}</div>`;
+      chatlog.innerHTML += `<div class="message bot">🤖 ${respuesta}</div>`;
+      input.value = "";
+    }
+  </script>
+</body>
+</html>
